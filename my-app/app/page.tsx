@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -10,14 +9,12 @@ import {
   Button,
   Paper,
   Stack,
-  IconButton,
   Divider,
 } from "@mui/material";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CakeIcon from "@mui/icons-material/Cake";
 import CelebrationIcon from "@mui/icons-material/Celebration";
-import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 
 export default function BirthdayPage() {
@@ -46,6 +43,41 @@ export default function BirthdayPage() {
     setShowWish(false);
   };
 
+  // 1st, 2nd, 3rd, 4th ... sirriitti barreessa
+  const getAgeText = () => {
+    const num = Number(age);
+    if (!num || num <= 0) return "";
+
+    const lastTwo = num % 100;
+    if (lastTwo >= 11 && lastTwo <= 13) return `${num}th`;
+
+    switch (num % 10) {
+      case 1:
+        return `${num}st`;
+      case 2:
+        return `${num}nd`;
+      case 3:
+        return `${num}rd`;
+      default:
+        return `${num}th`;
+    }
+  };
+
+  // Guyyaa bareedaa taasisa: November 14, 2026
+  const getDateText = () => {
+    if (!birthdayDate) return "";
+    const date = new Date(`${birthdayDate}T00:00:00`);
+    if (isNaN(date.getTime())) return birthdayDate;
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
+  const ageText = getAgeText();
+  const dateText = getDateText();
+
   return (
     <Box
       sx={{
@@ -59,25 +91,23 @@ export default function BirthdayPage() {
       }}
     >
       {/* Floating Decorations */}
-      {["❤️", "💕", "✨", "💗", "🌸", "💖", "🎀"].map(
-        (heart, index) => (
-          <Typography
-            key={index}
-            sx={{
-              position: "absolute",
-              top: `${10 + index * 12}%`,
-              left: `${5 + index * 13}%`,
-              fontSize: { xs: "20px", md: "35px" },
-              opacity: 0.4,
-              animation: "float 4s ease-in-out infinite",
-              animationDelay: `${index * 0.4}s`,
-              pointerEvents: "none",
-            }}
-          >
-            {heart}
-          </Typography>
-        )
-      )}
+      {["❤️", "💕", "✨", "💗", "🌸", "💖", "🎀"].map((heart, index) => (
+        <Typography
+          key={index}
+          sx={{
+            position: "absolute",
+            top: `${10 + index * 12}%`,
+            left: `${5 + index * 13}%`,
+            fontSize: { xs: "20px", md: "35px" },
+            opacity: 0.4,
+            animation: "float 4s ease-in-out infinite",
+            animationDelay: `${index * 0.4}s`,
+            pointerEvents: "none",
+          }}
+        >
+          {heart}
+        </Typography>
+      ))}
 
       <Container maxWidth="sm">
         <Paper
@@ -103,18 +133,18 @@ export default function BirthdayPage() {
 
               <Typography
                 variant="h4"
-  sx={{ 
-    color: "#8e245e", 
-    mb: 1, 
-    fontWeight: "bold" 
-  }}
->
-  Birthday Wish Maker
+                sx={{
+                  color: "#8e245e",
+                  mb: 1,
+                  fontWeight: "bold",
+                }}
+              >
+                Birthday Wish Maker
               </Typography>
 
               <Typography color="text.secondary" sx={{ mb: 4 }}>
-                Create a beautiful birthday surprise
-                for someone special in your life. 💕
+                Create a beautiful birthday surprise for someone special in
+                your life. 💕
               </Typography>
 
               <Stack spacing={2.5}>
@@ -144,15 +174,15 @@ export default function BirthdayPage() {
 
                 <TextField
                   fullWidth
-  label="Birthday Date (Optional)"
-  type="date"
-  value={birthdayDate}
-  onChange={(e) => setBirthdayDate(e.target.value)}
-  slotProps={{
-    inputLabel: {
-      shrink: true,
-    },
-  }}
+                  label="Birthday Date (Optional)"
+                  type="date"
+                  value={birthdayDate}
+                  onChange={(e) => setBirthdayDate(e.target.value)}
+                  slotProps={{
+                    inputLabel: {
+                      shrink: true,
+                    },
+                  }}
                 />
 
                 <TextField
@@ -176,11 +206,9 @@ export default function BirthdayPage() {
                     borderRadius: 3,
                     fontWeight: "bold",
                     fontSize: "16px",
-                    background:
-                      "linear-gradient(90deg, #d63384, #8e44ad)",
+                    background: "linear-gradient(90deg, #d63384, #8e44ad)",
                     "&:hover": {
-                      background:
-                        "linear-gradient(90deg, #ad2670, #71368a)",
+                      background: "linear-gradient(90deg, #ad2670, #71368a)",
                     },
                   }}
                 >
@@ -196,33 +224,28 @@ export default function BirthdayPage() {
 
               <Typography
                 variant="h3"
-  sx={{
-    color: "#c02678",
-    mb: 2,
-    fontSize: { xs: "2rem", sm: "2.7rem" },
-    fontWeight: "bold",
-  }}
->
-  Happy Birthday!
+                sx={{
+                  color: "#c02678",
+                  mb: 2,
+                  fontSize: { xs: "2rem", sm: "2.7rem" },
+                  fontWeight: "bold",
+                }}
+              >
+                Happy Birthday!
               </Typography>
 
               <Typography
                 variant="h4"
-  sx={{ 
-    color: "#84245c", 
-    mb: 2, 
-    fontWeight: "bold" 
-  }}
->
-  My Dear {girlName}❤️
-              </Typography>
-
-              <Typography
                 sx={{
-                  fontSize: 45,
+                  color: "#84245c",
                   mb: 2,
+                  fontWeight: "bold",
                 }}
               >
+                My Dear {girlName} ❤️
+              </Typography>
+
+              <Typography sx={{ fontSize: 45, mb: 2 }}>
                 🎉 🎂 💐 🎁
               </Typography>
 
@@ -241,8 +264,8 @@ export default function BirthdayPage() {
 
                 {"\n\n"}
 
-                Today is a special day because the world
-                celebrates someone truly wonderful — YOU!
+                Today is a special day because the world celebrates someone
+                truly wonderful — YOU!
 
                 {"\n\n"}
 
@@ -250,15 +273,14 @@ export default function BirthdayPage() {
 
                 {"\n\n"}
 
-                May your life always be filled with happiness,
-                laughter, beautiful memories, endless blessings,
-                and wonderful opportunities.
+                May your life always be filled with happiness, laughter,
+                beautiful memories, endless blessings, and wonderful
+                opportunities.
 
                 {"\n\n"}
 
-                May every dream in your heart find its way
-                to reality. Never stop shining, smiling,
-                and being the amazing person you are.
+                May every dream in your heart find its way to reality. Never
+                stop shining, smiling, and being the amazing person you are.
 
                 {"\n\n"}
 
@@ -269,22 +291,21 @@ export default function BirthdayPage() {
                   </>
                 )}
 
-                {age && (
+                {ageText && (
                   <>
-                    Cheers to your {age}th year! 🥳
+                    Cheers to your {ageText} year! 🥳
                     {"\n\n"}
                   </>
                 )}
 
-                {birthdayDate && (
+                {dateText && (
                   <>
-                    Celebrating your special day on {birthdayDate}.
+                    Celebrating your special day on {dateText}.
                     {"\n\n"}
                   </>
                 )}
 
-                You deserve all the beautiful things life has
-                to offer.
+                You deserve all the beautiful things life has to offer.
 
                 {"\n\n"}
 
@@ -301,13 +322,13 @@ export default function BirthdayPage() {
 
               <Typography
                 variant="h6"
-  sx={{ 
-    color: "#c02678", 
-    mb: 3, 
-    fontWeight: "bold" 
-  }}
->
-  Forever keep smiling! ❤️
+                sx={{
+                  color: "#c02678",
+                  mb: 3,
+                  fontWeight: "bold",
+                }}
+              >
+                Forever keep smiling! ❤️
               </Typography>
 
               <Stack spacing={2}>
@@ -344,21 +365,22 @@ export default function BirthdayPage() {
         </Paper>
 
         <Typography
-  sx={{
-    mt: 3,
-    color: "white",
-    fontSize: 14,
-    opacity: 0.85,
-    textAlign: "center",
-  }}
->
-  Made with ❤️ by {yourName || "Someone Special"}
-</Typography>
+          sx={{
+            mt: 3,
+            color: "white",
+            fontSize: 14,
+            opacity: 0.85,
+            textAlign: "center",
+          }}
+        >
+          Made with ❤️ by {yourName || "Someone Special"}
+        </Typography>
       </Container>
 
       <style jsx global>{`
         @keyframes float {
-          0%, 100% {
+          0%,
+          100% {
             transform: translateY(0px);
           }
           50% {
