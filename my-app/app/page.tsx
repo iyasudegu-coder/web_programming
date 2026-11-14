@@ -103,10 +103,13 @@ export default function BirthdayPage() {
 
               <Typography
                 variant="h4"
-                fontWeight="bold"
-                sx={{ color: "#8e245e", mb: 1 }}
-              >
-                Birthday Wish Maker
+  sx={{ 
+    color: "#8e245e", 
+    mb: 1, 
+    fontWeight: "bold" 
+  }}
+>
+  Birthday Wish Maker
               </Typography>
 
               <Typography color="text.secondary" sx={{ mb: 4 }}>
@@ -141,11 +144,15 @@ export default function BirthdayPage() {
 
                 <TextField
                   fullWidth
-                  label="Birthday Date (Optional)"
-                  type="date"
-                  value={birthdayDate}
-                  onChange={(e) => setBirthdayDate(e.target.value)}
-                  InputLabelProps={{ shrink: true }}
+  label="Birthday Date (Optional)"
+  type="date"
+  value={birthdayDate}
+  onChange={(e) => setBirthdayDate(e.target.value)}
+  slotProps={{
+    inputLabel: {
+      shrink: true,
+    },
+  }}
                 />
 
                 <TextField
@@ -189,22 +196,25 @@ export default function BirthdayPage() {
 
               <Typography
                 variant="h3"
-                fontWeight="bold"
-                sx={{
-                  color: "#c02678",
-                  mb: 2,
-                  fontSize: { xs: "2rem", sm: "2.7rem" },
-                }}
-              >
-                Happy Birthday! 🎂
+  sx={{
+    color: "#c02678",
+    mb: 2,
+    fontSize: { xs: "2rem", sm: "2.7rem" },
+    fontWeight: "bold",
+  }}
+>
+  Happy Birthday!
               </Typography>
 
               <Typography
                 variant="h4"
-                fontWeight="bold"
-                sx={{ color: "#84245c", mb: 2 }}
-              >
-                My Dear {girlName} ❤️
+  sx={{ 
+    color: "#84245c", 
+    mb: 2, 
+    fontWeight: "bold" 
+  }}
+>
+  My Dear {girlName}❤️
               </Typography>
 
               <Typography
@@ -291,10 +301,13 @@ export default function BirthdayPage() {
 
               <Typography
                 variant="h6"
-                fontWeight="bold"
-                sx={{ color: "#c02678", mb: 3 }}
-              >
-                Forever keep smiling! ❤️
+  sx={{ 
+    color: "#c02678", 
+    mb: 3, 
+    fontWeight: "bold" 
+  }}
+>
+  Forever keep smiling! ❤️
               </Typography>
 
               <Stack spacing={2}>
@@ -331,16 +344,16 @@ export default function BirthdayPage() {
         </Paper>
 
         <Typography
-          textAlign="center"
-          sx={{
-            mt: 3,
-            color: "white",
-            fontSize: 14,
-            opacity: 0.85,
-          }}
-        >
-          Made with ❤️ by {yourName || "Someone Special"}
-        </Typography>
+  sx={{
+    mt: 3,
+    color: "white",
+    fontSize: 14,
+    opacity: 0.85,
+    textAlign: "center",
+  }}
+>
+  Made with ❤️ by {yourName || "Someone Special"}
+</Typography>
       </Container>
 
       <style jsx global>{`
