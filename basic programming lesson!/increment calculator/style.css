@@ -1,0 +1,27 @@
+body{
+    font-family: Arial, Helvetica, sans-serif, sans-serif;
+    text-align: center;
+    margin-top: 100px;
+    background-color: #af1212;
+}   
+h1{
+    font-size: 60px;
+    margin-bottom: 20px;
+}   
+button{
+ width: 100px;
+ height: 100px;
+ border-radius: 50%;
+}   
+#increaseBtn{
+    background-color: #ffff;
+    color: #000000;
+}
+#decreaseBtn{
+    background-color: #222;
+    color: #000000;
+}
+#resetBtn{
+    background-color: cornflowerblue;
+    color: #000000;
+}
